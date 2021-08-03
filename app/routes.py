@@ -179,3 +179,76 @@ def get_nutrition(ndbno, meal=None, date=datetime.now()):
                 return redirect(url_for('food_log', date_pick=date))
 
 
+@app.route('/food_log', methods=['GET', 'POST'])
+@app.route('/food_log/<string:date_pick>', methods=['GET', 'POST'])
+@login_required
+def food_log(date_pick=datetime.now().strftime('%B %d, %Y')):
+    form = RemoveFood()
+    form2 = FoodLogDatePicker()
+
+    if request.method == 'GET':
+
+        # make sure user didn't tamper with the date URL to throw an error
+        try:
+            datetime.strptime(date_pick, '%B %d, %Y')
+        except ValueError:
+            return redirect(url_for('food_log'))
+
+        session.pop('_flashes', None)
+
+        form2.date.data = date_pick
+
+        foods = Food.query.filter_by(user_id=current_user.get_id(), date=date_pick)
+        user = User.query.filter_by(id=current_user.get_id()).first()
+
+        meals = {'Breakfast': 0, 'Lunch': 0, 'Dinner': 0, 'Snacks': 0, 'total': 0}
+        total_cals = dict(meals)
+        total_carbs = dict(meals)
+        total_protein = dict(meals)
+        total_fat = dict(meals)
+
+        for food in foods:
+            total_cals['total'] = total_cals['total'] + food.kcal
+            total_carbs['total'] = total_carbs['total'] + food.carbs
+            total_protein['total'] = total_protein['total'] + food.protein
+            total_fat['total'] = total_fat['total'] + food.fat
+
+            for meal in meals:
+                if str(food.meal) == str(meal):
+                    total_cals[meal] = total_cals[meal] + food.kcal
+                    total_carbs[meal] = total_carbs[meal] + food.carbs
+                    total_protein[meal] = total_protein[meal] + food.protein
+                    total_fat[meal] = total_fat[meal] + food.fat
+
+        return render_template('food_log.html', foods=foods, user=user, form=form,
+                               form2=form2, total_fat=total_fat,
+                               total_cals=total_cals, total_carbs=total_carbs,
+                               total_protein=total_protein, date_pick=date_pick)
+
+    if request.method == 'POST':
+
+        if request.form["action"] == "remove":
+            remove_id = form.entry_id.data
+            user_id_for_row = Food.query.filter_by(
+                id=remove_id).first().user_id
+            if str(user_id_for_row) == current_user.get_id():
+                Food.query.filter_by(id=remove_id).delete()
+                db.session.commit()
+            else:
+                flash("Cannot access this entry.")
+
+        elif request.form["action"] == "back":
+            date_pick = (datetime.strptime(form2.date.data, '%B %d, %Y') -
+                         timedelta(days=1)).strftime('%B %d, %Y')
+
+        elif request.form["action"] == "forward":
+            date_pick = (datetime.strptime(form2.date.data, '%B %d, %Y') +
+                         timedelta(days=1)).strftime('%B %d, %Y')
+
+        todays_date = datetime.now().strftime('%B %d, %Y')
+        if date_pick == todays_date:
+            return redirect(url_for('food_log'))
+        else:
+            return redirect(url_for('food_log', date_pick=date_pick))
+
+
