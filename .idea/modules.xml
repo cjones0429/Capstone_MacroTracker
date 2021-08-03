@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/Capstone_MacroTracker.iml" filepath="$PROJECT_DIR$/.idea/Capstone_MacroTracker.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/Capstone_MacroTracking.iml" filepath="$PROJECT_DIR$/.idea/Capstone_MacroTracking.iml" />
     </modules>
   </component>
 </project>
