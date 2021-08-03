@@ -1,0 +1,108 @@
+{% extends 'base.html' %} {% block app_content %}
+<div id="page-wrapper">
+    <div class="container-fluid main-content-fluid">
+        {% if current_user.is_authenticated %}
+        <h2 class="text-center">Welcome, {{ current_user.username }}!</h2>
+        <h4 class="text-center">This is your personal macronutrient and calorie tracker!</h4>
+        {% else %}
+        <h2 class="text-center">Welcome!</h2>
+        {% endif %}
+        <hr/>
+        <br/>
+        <p class="lead">
+            Here's some basic information on how you can calculate the amount of
+            calories and/or macronutrients you need per day.
+        </p>
+        <br/>
+        <p class="lead">
+            Calculate basal metabolic rate (BMR), or the calories your body burns simply by being alive.
+            <br/>
+            For men: 10 x weight (kg) + 6.25 x height (cm) – 5 x age (y) + 5 (kcal / day)
+            <br/>
+
+            For women: 10 x weight (kg) + 6.25 x height (cm) – 5 x age (y) -161 (kcal / day)
+            <br/>
+            <br/>
+            1 kg = 2.2 lbs |
+            1 inch = 2.54cm |
+            1 foot = 12in |
+            y = years |
+            kcal = calories
+            <br/>
+            <br/>
+            Then, this BMR count is multiplied, depending on your activity level:
+            <br/>
+            Sedentary = 1.2
+            <br/>
+            Lightly active = 1.375
+            <br/>
+            Moderately active = 1.550
+            <br/>
+            Very active = 1.725
+            <br/>
+            Extra active = 1.9
+            <br/>
+            <br/>
+
+            The calorie count is then adjusted based on your goal:
+            <br/>
+            Weight loss: Reduce by 10-20%
+            <br/>
+            Weight gain: Add 500 calories
+            <br/>
+            Weight maintenance: Unchanged
+            <br/>
+            <br/>
+
+            This calorie count is split into macronutrient percentages in the following ratios,
+            based on splits commonly recommended by certified nutrition experts for muscle gain,
+            weight loss, and weight maintenance.
+            <br/>
+            Weight loss: 40 carbs/40 protein/20 fats
+            <br/>
+            Weight gain: 40 carbs/30 protein/30 fats
+            <br/>
+            Weight maintenance: 40 carbs/30 protein/30 fats
+            <br/>
+            <br/>
+
+            These daily grams of each macro come from applying those percentages to your daily calorie number.
+            Each gram of a macronutrient is worth this many calories:
+            <br/>
+            Protein: 4 calories/gram
+            <br/>
+            Carbs: 4 calories/gram
+            <br/>
+            Fats: 9 calories/gram
+            <br/>
+            <br/>
+            This can be a little confusing so let's look at an example.
+            <br/>
+            Let's say we have a male that weighs 220 pounds, is 6' 0", and 30 years old. He has a lightly active
+            lifestyle but he's looking to lose a little weight.
+            <br/>
+            Weight: 220lbs ÷ 2.2 = 110 kg
+            <br/>
+            Height: 6' 0" = 72 inches, 72 in x 2.54 = 182.9 cm
+            <br/>
+            <br/>
+            BMR: (10 x 110 (kg)) + (6.25 x 182.9 (cm)) – (5 x 30 (y)) + (5 (kcal / day)) x 1.375 (lightly active) = 1,988 calories
+            <br/>
+            Because he wants to lose weight, let's reduce his daily caloric intake by 15%.
+            <br/>
+            To find this: 1,988 x .15 = 298 cals, 1,987 - 298 = 1690 kcal/day
+            <br/>
+            To lose weight he needs these %: 40 carbs/40 protein/20 fats
+            <br/>
+            Carbs = 1690 x .40 = 676 cals, 676/4 = 169 g carbs/day
+            <br/>
+            Proteins = 1690 x .40 = 676 cals, 676/4 = 169 g protein/day
+            <br/>
+            Fats = 1690 x .20 = = 338 cals, 338/9 = 36 g fat/day
+        </p>
+        <p class="lead">
+
+        </p>
+    </div>
+</div>
+{% endblock %}
