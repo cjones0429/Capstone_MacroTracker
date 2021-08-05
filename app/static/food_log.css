@@ -4,13 +4,13 @@
     height: 75px;
     width: 75px;
     border-radius: 0 !important;
-    background-color: #10ABF9;
+    background-color: #34495E;
     color: white;
 }
 
 .custom_buttons:hover,
 .custom_buttons:active {
-    color: #10ABF9;
+    color: #3FC18B;
 }
 
 .remove-buttons {
@@ -51,7 +51,7 @@
 }
 
 .food-rows {
-    outline: thin solid;
+    outline: thin solid; 
     outline-color: #ECF0F1;
 }
 

@@ -4,6 +4,6 @@
 }
 
 .table-custom .content-rows {
-    outline: thin solid;
+    outline: thin solid; 
     outline-color: #ECF0F1;
 }
