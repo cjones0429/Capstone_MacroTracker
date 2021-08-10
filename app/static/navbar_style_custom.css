@@ -9,7 +9,7 @@ body {
     }
     .navbar-default .navbar-brand {
         width: 175px;
-        background-color: #3FC18B;
+        background-color: #20ADD6;
         color: white;
     }
 }
@@ -19,14 +19,14 @@ body {
 }
 
 .navbar-default {
-    background-color: #41D89E;
-    border-color: #41D89E;
+    background-color: #20ADD6;
+    border-color: #20ADD6;
 }
 
 .navbar-default .navbar-brand:hover,
 .navbar-default .navbar-brand:focus {
     color: #EEF2F9;
-    background-color: #3FC18B;
+    background-color: #20ADD6;
 }
 /* Link */
 .navbar-default .navbar-nav > li > a {
@@ -42,7 +42,7 @@ body {
 .navbar-default .navbar-nav > .active > a,
 .navbar-default .navbar-nav > .active > a:hover,
 .navbar-default .navbar-nav > .active > a:focus {
-    color: #3FC18B;
+    color: #20ADD6;
     background-color: #2E4154;
 }
 
@@ -50,8 +50,8 @@ body {
     .navbar-default .navbar-nav > .active > a,
     .navbar-default .navbar-nav > .active > a:hover,
     .navbar-default .navbar-nav > .active > a:focus {
-        -webkit-box-shadow: inset 5px 0px 0px 0px #3FC18B;
-        box-shadow: inset 5px 0px 0px 0px #3FC18B;
+        -webkit-box-shadow: inset 5px 0px 0px 0px #20ADD6;
+        box-shadow: inset 5px 0px 0px 0px #20ADD6;
     }
 }
 
@@ -98,7 +98,7 @@ body {
 .top-nav>.open>a,
 .top-nav>.open>a:hover,
 .top-nav>.open>a:focus {
-    background-color: #41D89E;
+    background-color: #20ADD6;
     color: #EEF2F9;
 }
 
